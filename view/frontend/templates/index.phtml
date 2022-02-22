@@ -1,0 +1,97 @@
+<?php
+    $collection = $block->getCollection();
+    if ($collection->count()) {
+?>
+
+<div class="table-wrapper orders-history">
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption"><?php echo __('Grid Record') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col title"><?php echo __('Dotsquare Gallery') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+                foreach ($collection as $item): ?>
+        <tr class="gallery-section">
+            <td data-th="<?= $block->escapeHtml(__('Dotsquare Gallery')) ?>" class="col title">      
+            
+                    <div class="imagedesc">
+                        <?php 
+                        $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+                         $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+                              $currentStore = $storeManager->getStore();
+                              $path = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).$item->getThumbnailImage();
+                                        $img ='<img src='.$path. ' >';
+                                       ?><a href="<?php echo $item->getUrl()?>"> <?php echo $img; ?></a>
+                        </div>  
+                        <div class="imagedesc">
+                        <?php 
+                              $path = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).$item->getImage();
+                                        $img1 = '<img src='.$path. ' >';
+                                     ?><a href="<?php echo $item->getUrl()?>"> <?php   echo $img1; ?></a>
+                        </div> 
+                        <div class="imagetitle">Title:- <p><?php echo  $item->getTitle();?></p></div> 
+                <!-- <div class="imageurl">Url :- <?php echo  $item->getUrl();?></div> -->
+                        <div class="imageshortdes">Short Description :- <p><?php echo $item->getShortDescription() ?></p></div>
+                        <div class="imagedesc">Description :- <p> <?php echo $item->getDescription() ?></p></div>                          
+                </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php
+    }
+    ?>
+<style type="text/css">
+table > tbody > tr > td, table > tr > td {
+  padding: 11px 40px;
+}
+.gallery-section {
+  float: left;
+}
+.base {
+  display: none;
+}
+.imagetitle {
+    font-size: 16px;
+    font-weight: bold;
+}
+.imagetitle p {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+}
+.imageshortdes {
+    font-size: 16px;
+    font-weight: bold;
+}
+.imageshortdes p {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+}
+.imagedesc {
+    font-size: 16px;
+    font-weight: bold;
+}
+.imagedesc p {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+}
+th.col.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    padding-bottom: 20px;
+    /* border-bottom: 1px solid #cccccc; */
+}
+.table > tbody > tr > th, .table > tbody > tr > td {
+    border-top: 0px solid #cccccc;
+}
+
+</style>

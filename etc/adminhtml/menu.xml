@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+
+           <add id="Dotsquares_Galleryimages::galleryimages" title="Dotsquares" module="Dotsquares_Galleryimages" sortOrder="440" 
+        parent="Magento_Backend::content" resource="Dotsquares_Galleryimages::galleryimages"/>
+        <add id="Dotsquares_Galleryimages::post" title="Gallery images" module="Dotsquares_Galleryimages" sortOrder="10" 
+        parent="Dotsquares_Galleryimages::galleryimages" action="dotsquares_galleryimages/post" resource="Dotsquares_Galleryimages::post"/>
+
+    </menu>
+</config>
